@@ -138,19 +138,14 @@ _.'                                .__;
             switch (choice)
             {
                 case "yes":
-                    Console.Clear();
-                    Console.WriteLine("You enter the temple. The temple creaks, and strange sounds come from strange places.");
-                    Console.WriteLine("You take a few steps and see a door to your left and an open room to your right (The room looks a bit dangerous).");
-                    Console.WriteLine("\nDo you want to go left through the door, or do you want to go right into the open room? (left/right)");
+                    EnterTemple();
 
                     choice = ValidateInput("left", "right");
 
                     switch (choice)
                     {
                         case "left":
-                            Console.Clear();
-                            Console.WriteLine("You go left and approach the door... It seems to be locked, but luckily you brought your lockpick set.");
-                            Console.WriteLine("Do you want to try to pick the lock, or do you want to take a step back and reconsider your choice? (lockpick/go back)");
+                            LeftToDoor();
 
                             choice = ValidateInput("lockpick", "go back");
 
@@ -160,66 +155,29 @@ _.'                                .__;
                             }
                             else
                             {
-                                Console.Clear();
-                                Console.WriteLine("You decide to go back and reconsider your choice.");
+                                ChickenBok();
                             }
                             break;
 
                         case "right":
-                            Console.Clear();
-                            Console.WriteLine("You go right into the open room, where even stranger sounds are coming from.");
-                            Console.WriteLine("Inside the room, you come face to face with a gigantic dragon!");
-                            Console.WriteLine("You were not prepared, and the dragon defeats you. Game over!");
-                            continueGame = false;
-                            break;
-
-                        default:
-                            Console.Clear();
-                            Console.WriteLine("Invalid choice. Choose again!");
+                            continueGame = DragonEncounter1();
                             break;
                     }
                     break;
 
                 case "no":
-                    Console.Clear();
-                    Console.WriteLine("You decide not to enter the temple and leave.");
-                    Console.WriteLine("The adventure ends here. Thanks for playing!");
-                    continueGame = false;
-                    break;
-
-                default:
-                    Console.Clear();
-                    Console.WriteLine("Invalid choice. Choose again!");
+                    continueGame = DontEnterTemple();
                     break;
             }
             if (choice == "take sword")
             {
-                Console.Clear();
-                Console.WriteLine("You have taken the sword and feel much more powerful.");
-                Console.WriteLine("You return to the dark room and come face to face with the gigantic dragon.");
-                Console.WriteLine("With the sword in your hands, you are determined to defeat the dragon!");
-                Console.WriteLine("What do you want to do? (fight/go back)");
+                TakeSword();
 
                 choice = ValidateInput("fight", "go back");
 
                 if (choice == "fight")
                 {
-                    Console.Clear();
-                    Console.WriteLine("You engage in a battle with the dragon, and after an epic fight, you manage to defeat the dragon!");
-                    Console.WriteLine("You have survived the adventure and defeated the dragon.");
-                    Console.WriteLine("After the battle, you discover a secret door behind the dragon.");
-                    Console.WriteLine("You open the door and find a large chest full of goods and diamonds!");
-                    Console.WriteLine("Congratulations, you have won the game!");
-
-                    Console.WriteLine("\nYou return to the civilized world with the large chest full of treasures and diamonds.");
-                    Console.WriteLine("You become a legend, and Herat will always remain in your memories.");
-                    Console.WriteLine("Thanks for playing!");
-                    continueGame = false;
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("You decide to go back and reconsider your choice.");
+                    continueGame = FightDragon();
                 }
             }
         }
@@ -233,6 +191,61 @@ _.'                                .__;
                 choice = Console.ReadLine().ToLower();
             }
             return choice;
+        }
+        static bool FightDragon()
+        {
+            Console.Clear();
+            Console.WriteLine("You engage in a battle with the dragon, and after an epic fight, you manage to defeat the dragon!");
+            Console.WriteLine("You have survived the adventure and defeated the dragon.");
+            Console.WriteLine("After the battle, you discover a secret door behind the dragon.");
+            Console.WriteLine("You open the door and find a large chest full of goods and diamonds!");
+            Console.WriteLine("Congratulations, you have won the game!");
+
+            Console.WriteLine("\nYou return to the civilized world with the large chest full of treasures and diamonds.");
+            Console.WriteLine("You become a legend, and Herat will always remain in your memories.");
+            Console.WriteLine("Thanks for playing!");
+            return false;
+        }
+        static void TakeSword()
+        {
+            Console.Clear();
+            Console.WriteLine("You have taken the sword and feel much more powerful.");
+            Console.WriteLine("You return to the dark room and come face to face with the gigantic dragon.");
+            Console.WriteLine("With the sword in your hands, you are determined to defeat the dragon!");
+            Console.WriteLine("What do you want to do? (fight/go back)");
+        }
+        static bool DontEnterTemple()
+        {
+            Console.Clear();
+            Console.WriteLine("You decide not to enter the temple and leave.");
+            Console.WriteLine("The adventure ends here. Thanks for playing!");
+            return false;
+        }
+        static void EnterTemple()
+        {
+            Console.Clear();
+            Console.WriteLine("You enter the temple. The temple creaks, and strange sounds come from strange places.");
+            Console.WriteLine("You take a few steps and see a door to your left and an open room to your right (The room looks a bit dangerous).");
+            Console.WriteLine("\nDo you want to go left through the door, or do you want to go right into the open room? (left/right)");
+        }
+        static void LeftToDoor()
+        {
+            Console.Clear();
+            Console.WriteLine("You go left and approach the door... It seems to be locked, but luckily you brought your lockpick set.");
+            Console.WriteLine("Do you want to try to pick the lock, or do you want to take a step back and reconsider your choice? (lockpick/go back)");
+        }
+        static void ChickenBok()
+        {
+            Console.Clear();
+            Console.WriteLine("You decide to go back and reconsider your choice.");
+        }
+        static bool DragonEncounter1()
+        {
+            Console.Clear();
+            Console.WriteLine("You go right into the open room, where even stranger sounds are coming from.");
+            Console.WriteLine("Inside the room, you come face to face with a gigantic dragon!");
+            Console.WriteLine("You were not prepared, and the dragon defeats you. Game over!");
+            return false;
         }
 
         static bool PickLock()

@@ -185,11 +185,13 @@ _.'                                .__;
         static string ValidateInput(params string[] validOptions)
         {
             string choice = Console.ReadLine().ToLower();
+
             while (Array.IndexOf(validOptions, choice) == -1)
             {
                 Console.WriteLine("Invalid choice. Choose again!");
                 choice = Console.ReadLine().ToLower();
             }
+
             return choice;
         }
         static bool FightDragon()
@@ -221,6 +223,7 @@ _.'                                .__;
             Console.WriteLine("The adventure ends here. Thanks for playing!");
             return false;
         }
+
         static void EnterTemple()
         {
             Console.Clear();
@@ -228,17 +231,20 @@ _.'                                .__;
             Console.WriteLine("You take a few steps and see a door to your left and an open room to your right (The room looks a bit dangerous).");
             Console.WriteLine("\nDo you want to go left through the door, or do you want to go right into the open room? (left/right)");
         }
+
         static void LeftToDoor()
         {
             Console.Clear();
             Console.WriteLine("You go left and approach the door... It seems to be locked, but luckily you brought your lockpick set.");
             Console.WriteLine("Do you want to try to pick the lock, or do you want to take a step back and reconsider your choice? (lockpick/go back)");
         }
+
         static void ChickenBok()
         {
             Console.Clear();
             Console.WriteLine("You decide to go back and reconsider your choice.");
         }
+
         static bool DragonEncounter1()
         {
             Console.Clear();

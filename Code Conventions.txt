@@ -1,4 +1,0 @@
-Choicemakers Code Conventions,
-Local variables camel case
-Methods pascal case
-Language of the code: English.

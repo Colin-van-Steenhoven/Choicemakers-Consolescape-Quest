@@ -16,4 +16,4 @@ Technologieën
 Gemaakt met C# .NET.
 
 Contact
-Neem contact met ons op via colinvansteenhoven@gmail.com voor vragen of feedback.
+Neem contact met mij op via colinvansteenhoven@gmail.com voor vragen of feedback.

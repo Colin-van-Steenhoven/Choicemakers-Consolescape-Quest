@@ -4,8 +4,10 @@ class Program
 {
     static void Main(string[] args)
     {
-
-        string logo = @"   
+        var mainMenu = true;
+        while (mainMenu)
+        {
+            string logo = @"   
        ▄████▄  ██░ ██ ▒█████  ██▓▄████▄ ▓█████ ███▄ ▄███▓▄▄▄      ██ ▄█▓█████ ██▀███   ██████
       ▒██▀ ▀█ ▓██░ ██▒██▒  ██▓██▒██▀ ▀█ ▓█   ▀▓██▀█▀ ██▒████▄    ██▄█▒▓█   ▀▓██ ▒ ██▒██    ▒
      █    ▄▒██▀▀██▒██░  ██▒██▒▓█    ▄▒███  ▓██    ▓██▒██  ▀█▄ ▓███▄░▒███  ▓██ ░▄█ ░ ▓██▄
@@ -17,70 +19,78 @@ class Program
 
 
 
-        int screenWidth = Console.WindowWidth;
-        int screenHeight = Console.WindowHeight;
-        int logoPadding = Math.Max((screenHeight - logo.Split('\n').Length) / 2, 0);
+            int screenWidth = Console.WindowWidth;
+            int screenHeight = Console.WindowHeight;
+            int logoPadding = Math.Max((screenHeight - logo.Split('\n').Length) / 2, 0);
 
-        Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
 
-        var i = 0;
-        foreach (string line in logo.Split('\n'))
-        {
-            Console.SetCursorPosition(Math.Max((screenWidth - line.Length) / 2, 0), i);
-            Console.WriteLine(line);
-            i++;
-        }
-        Console.ResetColor();
-
-        Console.ForegroundColor = ConsoleColor.DarkGreen;
-
-        logoPadding = 5;
-
-        Console.SetCursorPosition(Math.Max((screenWidth - 7) / 2, 0), logoPadding + i);
-        Console.Write("1. ");
-        Console.ResetColor();
-        Console.Write("Play");
-
-        //Console.ForegroundColor = ConsoleColor.DarkGreen;
-        //Console.SetCursorPosition(Math.Max((screenWidth - 7) / 2, 0), logoPadding + i + 1);
-        //Console.Write("2. ");
-        //Console.ResetColor();
-        //Console.Write("Help");
-
-        Console.ForegroundColor = ConsoleColor.DarkGreen;
-        Console.SetCursorPosition(Math.Max((screenWidth - 7) / 2, 0), logoPadding + i + 2);
-        Console.Write("3. ");
-        Console.ResetColor();
-        Console.Write("Info");
-
-        Console.ForegroundColor = ConsoleColor.DarkGreen;
-        Console.SetCursorPosition(0, screenHeight - 1);
-        Console.Write("Copyright\u00A9: ");
-        Console.ResetColor();
-        Console.Write("Colin van Steenhoven");
-
-        Console.SetCursorPosition(Math.Max((screenWidth - 15) / 2, 0), logoPadding + i + 3);
-        Console.Write("Enter your choice: ");
-        string? choice1 = Console.ReadLine();
-
-        Console.ResetColor();
-
-        if (choice1 != null)
-        {
-            switch (choice1)
+            var i = 0;
+            foreach (string line in logo.Split('\n'))
             {
-                case "1":
-                    StartGame();
-                    break;
-                //case "2":
-                //ShowHelp();
-                //break;
-                case "3":
-                    ShowInfo();
-                    break;
-                default:
-                    Console.WriteLine("Invalid choice. Please choose a valid option.");
-                    break;
+                Console.SetCursorPosition(Math.Max((screenWidth - line.Length) / 2, 0), i);
+                Console.WriteLine(line);
+                i++;
+            }
+            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+
+            logoPadding = 5;
+
+        
+
+        
+            Console.SetCursorPosition(Math.Max((screenWidth - 7) / 2, 0), logoPadding + i);
+            Console.Write("1. ");
+            Console.ResetColor();
+            Console.Write("Play");
+
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.SetCursorPosition(Math.Max((screenWidth - 7) / 2, 0), logoPadding + i + 1);
+            Console.Write("2. ");
+            Console.ResetColor();
+            Console.Write("Help");
+
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.SetCursorPosition(Math.Max((screenWidth - 7) / 2, 0), logoPadding + i + 2);
+            Console.Write("3. ");
+            Console.ResetColor();
+            Console.Write("Info");
+
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.SetCursorPosition(0, screenHeight - 1);
+            Console.Write("Copyright\u00A9: ");
+            Console.ResetColor();
+            Console.Write("Colin van Steenhoven");
+
+            Console.SetCursorPosition(Math.Max((screenWidth - 15) / 2, 0), logoPadding + i + 3);
+            Console.Write("Enter your choice: ");
+            string? choice1 = Console.ReadLine();
+
+            Console.ResetColor();
+
+            if (choice1 != null)
+            {
+                switch (choice1)
+                {
+                        case "1":
+                            StartGame();
+                            mainMenu = false;
+                            break;
+                        case "2":
+                            ShowHelp();
+                            Console.WriteLine("Press enter to continue...");
+                            Console.ReadKey();
+                            Console.Clear();
+                            break;
+                        case "3":
+                            ShowInfo();
+                            break;
+                        default:
+                            Console.WriteLine("Invalid choice. Please choose a valid option.");
+                            break;
+                }
             }
         }
     }
@@ -193,59 +203,61 @@ _.'                                .__;
 
         return choice;
     }
-    //static void ShowHelp()
-    //{
-        //Console.Clear();
-        //Console.WriteLine("=== Game Help Menu ===\n");
-        //Console.WriteLine("Welcome to the Help Menu. Here, you will find useful information to navigate and enjoy the game.");
-        //Console.WriteLine("Type 'exit' at any time to return to the game.\n");
 
-        //Console.WriteLine("1. How to Play");
-        //Console.WriteLine("2. Game Controls");
-        //Console.WriteLine("3. Tips");
-        //Console.WriteLine("4. Exit Help (Resume Game)\n");
+    static void ShowHelp()
+    {
+        Console.Clear();
+        Console.WriteLine("=== Game Help Menu ===\n");
+        Console.WriteLine("Welcome to the Help Menu. Here, you will find useful information to navigate and enjoy the game.");
+        Console.WriteLine("Type 'exit' at any time to return to the game.\n");
 
-        //Console.Write("Enter your choice: ");
+        Console.WriteLine("1. How to Play");
+        Console.WriteLine("2. Game Controls");
+        Console.WriteLine("3. Tips");
+        Console.WriteLine("4. Exit Help (Resume Game)\n");
 
-        //string helpChoice = Console.ReadLine().ToLower();
+        Console.Write("Enter your choice: ");
 
-        //switch (helpChoice)
-        //{
-        //case "1":
-        //Console.Clear();
-        //Console.WriteLine("=== How to Play ===\n");
-        //Console.WriteLine("You find yourself in the mysterious jungle temple of Herat.");
-        //Console.WriteLine("Explore the temple, make choices, and uncover its secrets.");
-        //Console.WriteLine("Your objective is to survive the adventure and collect treasures.");
-        //Console.WriteLine("You can interact with the game using simple text commands.\n");
-        //break;
-        //case "2":
-        //Console.Clear();
-        //Console.WriteLine("=== Game Controls ===\n");
-        //Console.WriteLine("- Type '1' to Start the Game.");
-        //Console.WriteLine("- Type '2' to View Game Info.");
-        //Console.WriteLine("- Type 'help' to Access This Help Menu.");
-        //Console.WriteLine("- Type 'exit' to Return to the Game.\n");
-        // break;
-        //case "3":
-        //Console.Clear();
-        //Console.WriteLine("=== Tips ===\n");
-        //Console.WriteLine("1. Be cautious and think carefully about your choices.");
-        //Console.WriteLine("2. Explore different paths and options to discover secrets.");
-        //Console.WriteLine("3. You may find items or weapons to aid you on your journey.");
-        //Console.WriteLine("4. Remember, you can always return to this help menu by typing 'help'.");
-        //Console.WriteLine("5. Enjoy the adventure and have fun!\n");
-        //break;
-        //case "4":
-        //Console.Clear();
-        //Console.WriteLine("Returning to the game...");
-        //return;
-        //default:
-        //Console.Clear();
-        //Console.WriteLine("Invalid choice. Please choose a valid option.");
-        //break;
-        //}
-        //}
+        string helpChoice = Console.ReadLine().ToLower();
+
+        switch (helpChoice)
+        {
+            case "1":
+                Console.Clear();
+                Console.WriteLine("=== How to Play ===\n");
+                Console.WriteLine("You find yourself in the mysterious jungle temple of Herat.");
+                Console.WriteLine("Explore the temple, make choices, and uncover its secrets.");
+                Console.WriteLine("Your objective is to survive the adventure and collect treasures.");
+                Console.WriteLine("You can interact with the game using simple text commands.\n");
+                break;
+            case "2":
+                Console.Clear();
+                Console.WriteLine("=== Game Controls ===\n");
+                Console.WriteLine("- Type '1' to Start the Game.");
+                Console.WriteLine("- Type '2' to View Game Info.");
+                Console.WriteLine("- Type 'help' to Access This Help Menu.");
+                Console.WriteLine("- Type 'exit' to Return to the Game.\n");
+                break;
+            case "3":
+                Console.Clear();
+                Console.WriteLine("=== Tips ===\n");
+                Console.WriteLine("1. Be cautious and think carefully about your choices.");
+                Console.WriteLine("2. Explore different paths and options to discover secrets.");
+                Console.WriteLine("3. You may find items or weapons to aid you on your journey.");
+                Console.WriteLine("4. Remember, you can always return to this help menu by typing 'help'.");
+                Console.WriteLine("5. Enjoy the adventure and have fun!\n");
+                break;
+            case "4":
+                Console.Clear();
+                Console.WriteLine("Returning to the game...");
+                return;
+            default:
+                Console.Clear();
+                Console.WriteLine("Invalid choice. Please choose a valid option.");
+                break;
+        }
+    }
+
         static bool FightDragon()
         {
             Console.Clear();
@@ -260,6 +272,7 @@ _.'                                .__;
             Console.WriteLine("Thanks for playing!");
             return false;
         }
+
         static void TakeSword()
         {
             Console.Clear();
@@ -269,6 +282,7 @@ _.'                                .__;
             Console.WriteLine("With the sword in your hands, you are determined to defeat the dragon!");
             Console.WriteLine("What do you want to do? (fight/go back)");
         }
+
         static bool DontEnterTemple()
         {
             Console.Clear();
